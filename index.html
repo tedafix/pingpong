@@ -388,8 +388,10 @@ canvas.addEventListener("touchmove", e=>{
   let rect = canvas.getBoundingClientRect();
   let y = e.touches[0].clientY - rect.top;
   
-let offset = canvas.height < 500 ? 120 : 80;
+
+let offset = 150;
 player.y = y - offset;
+
 
 player.y = Math.max(0, Math.min(canvas.height - 80, player.y));
 },{passive:false});
