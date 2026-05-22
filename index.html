@@ -141,11 +141,17 @@ function start(){
     // hráč je vpravo
     player = { x: canvas.width - 30, y: 150, dy: 0 };
     ai = { x: 10, y: 150 };
-    ball = { 
-  x: canvas.width / 2, 
-  y: canvas.height / 2, 
-  dx: 4, 
-  dy: 4 
+
+let angle = (Math.random() * 0.6) - 0.3; // -0.3 až +0.3
+let speed = 4;
+
+ball = {
+  x: canvas.width / 2,
+  y: canvas.height / 2,
+  dx: (selectedSide === "left" ? 1 : -1) * speed,
+  dy: angle * speed * 5
+};
+
 };
 }
 
@@ -252,26 +258,34 @@ ai.y = Math.max(0, Math.min(canvas.height - 80, ai.y));
 
 
 // hráč (vlevo nebo vpravo)
+
 if(
   ball.x - 12 < player.x + 10 &&
   ball.x + 12 > player.x &&
   ball.y > player.y &&
   ball.y < player.y + 120
 ){
+  let hit = (ball.y - (player.y + 60)) / 60; // -1 až 1
   ball.dx *= -1;
+  ball.dy = hit * 6;
 }
+
 
 
 
 // AI (opravená kolize)
+
 if(
-  ball.x - 12 < ai.x + 10 &&
-  ball.x + 12 > ai.x &&
-  ball.y > ai.y &&
-  ball.y < ai.y + 120
+  ball.x - 12 < player.x + 10 &&
+  ball.x + 12 > player.x &&
+  ball.y > player.y &&
+  ball.y < player.y + 120
 ){
+  let hit = (ball.y - (player.y + 60)) / 60; // -1 až 1
   ball.dx *= -1;
+  ball.dy = hit * 6;
 }
+
 
 ``
 
