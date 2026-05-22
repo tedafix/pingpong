@@ -270,7 +270,8 @@ if(
   ball.x - 12 < player.x + 10 &&
   ball.x + 12 > player.x &&
   ball.y > player.y &&
-  ball.y < player.y + 120
+  ball.y < player.y + 120 &&
+  ball.dx < 0
 ){
   let hit = (ball.y - (player.y + 60)) / 60; // -1 až 1
   ball.dx *= -1.1;
@@ -307,7 +308,7 @@ if(
   ball.x - 12 < ai.x + 15 &&
   ball.x + 12 > ai.x &&
   ball.y > ai.y &&
-  ball.y < ai.y + 120
+  ball.y < ai.y + 120 &&
   ball.dx < 0
 ){
   let hit = (ball.y - (ai.y + 60)) / 60;
