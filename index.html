@@ -100,6 +100,10 @@ const canvas = document.getElementById("game");
   
 const ctx = canvas.getContext("2d");
   document.body.style.overflow = "hidden";
+  
+const bounceSound = new Audio("bounce.mp3");
+const goalSound = new Audio("goal.mp3");
+
 
 function resizeCanvas(){
   canvas.width = window.innerWidth;
@@ -269,10 +273,13 @@ if(
   ball.dx *= -1.1;
   ball.dy = hit * 6;
 
+bounceSound.currentTime = 0;
+bounceSound.play();
+
   if(Math.abs(ball.dy) < 2){
     ball.dy = ball.dy > 0 ? 2 : -2;
   }
-
+navigator.vibrate(20);
 }
 
 
@@ -292,10 +299,13 @@ if(
   ball.dx *= -1.1;
   ball.dy = hit * 6;
 
+bounceSound.currentTime = 0;
+bounceSound.play();
+
   if(Math.abs(ball.dy) < 2){
     ball.dy = ball.dy > 0 ? 2 : -2;
   }
-
+navigator.vibrate(20);
 }
 
 
@@ -304,15 +314,21 @@ if(
 
 
   // skóre
-  if(ball.x < 0){
-    scoreAI++;
-    resetBall();
-  }
 
-  if(ball.x > canvas.width){
-    scorePlayer++;
-    resetBall();
-  }
+if(ball.x < 0){
+  scoreAI++;
+  goalSound.currentTime = 0;
+  goalSound.play();
+  resetBall();
+}
+
+if(ball.x > canvas.width){
+  scorePlayer++;
+  goalSound.currentTime = 0;
+  goalSound.play();
+  resetBall();
+}
+
 
   // konec hry
   if(scorePlayer >= 5 || scoreAI >= 5){
