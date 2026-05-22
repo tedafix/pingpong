@@ -304,36 +304,38 @@ navigator.vibrate(20);
 
 
 // AI
+
 if(
   ball.x - 12 < ai.x + 15 &&
   ball.x + 12 > ai.x &&
   ball.y > ai.y &&
   ball.y < ai.y + 120 &&
-  ball.dx < 0
+  (
+    (ai.x > canvas.width / 2 && ball.dx > 0) ||
+    (ai.x < canvas.width / 2 && ball.dx < 0)
+  )
 ){
   let hit = (ball.y - (ai.y + 60)) / 60;
   ball.dx *= -1.1;
   ball.dy = hit * 6;
 
+  if(canPlaySound){
+    bounceSound.currentTime = 0;
+    bounceSound.play().catch(() => {});
+    canPlaySound = false;
 
-
-if(canPlaySound){
-  bounceSound.currentTime = 0;
-  bounceSound.play().catch(() => {});
-  canPlaySound = false;
-
-  setTimeout(() => {
-    canPlaySound = true;
-  }, 100);
-}
-
-
+    setTimeout(() => {
+      canPlaySound = true;
+    }, 100);
+  }
 
   if(Math.abs(ball.dy) < 2){
     ball.dy = ball.dy > 0 ? 2 : -2;
   }
-navigator.vibrate(20);
+
+  navigator.vibrate(20);
 }
+
 
 
 
