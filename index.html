@@ -103,7 +103,7 @@ const ctx = canvas.getContext("2d");
 
 function resizeCanvas(){
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight * 0,5; // nech místo na tlačítka
+  canvas.height = window.innerHeight * 0.5; // nech místo na tlačítka
 }
 
 resizeCanvas();
@@ -114,7 +114,7 @@ window.addEventListener("resize", resizeCanvas);
 
 let player = { x: 10, y: 160, dy: 0 };
 let ai = { x: 580, y: 160 };
-ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 4, dy: 4 };
+let ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 4, dy: 4 };
 
 let scorePlayer = 0;
 let scoreAI = 0;
@@ -131,9 +131,7 @@ function start(){
   if(selectedSide === "left"){
     player = { x: 10, y: 150, dy: 0 };
     ai = { x: canvas.width - 20, y: 150 };
-    ball = { 
-  x: canvas.width / 2, 
-  y: canvas.height / 2, 
+    ball = {   x: canvas.width / 2,   y: canvas.height / 2, 
   dx: 4, 
   dy: 4 
 };
@@ -149,7 +147,7 @@ function start(){
   dx: 4, 
   dy: 4 
 };
-
+}
 
   scorePlayer = 0;
   scoreAI = 0;
