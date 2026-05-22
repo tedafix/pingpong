@@ -18,8 +18,9 @@
     canvas {
       
 border: 2px solid white;
-  touch-action: none; /* ✅ klíčové pro mobil */
-
+  touch-action: none; /* ✅ klíčové pro mobil */    
+ width: 100%;
+  height: auto
     }
   
 button {
@@ -47,6 +48,15 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden; /* ✅ vypne scroll */
+}
+
+#menu {
+  text-align: center;
+}
+
+#menu button {
+  width: 80%;
+  max-width: 300px;
 }
 
   </style>
@@ -89,7 +99,7 @@ const ctx = canvas.getContext("2d");
 
 function resizeCanvas(){
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight - 100; // nech místo na tlačítka
+  canvas.height = window.innerHeight * 0,65; // nech místo na tlačítka
 }
 
 resizeCanvas();
@@ -117,14 +127,25 @@ function start(){
   if(selectedSide === "left"){
     player = { x: 10, y: 150, dy: 0 };
     ai = { x: canvas.width - 20, y: 150 };
-    ball = { x: 300, y: 200, dx: 4, dy: 4 };
+    ball = { 
+  x: canvas.width / 2, 
+  y: canvas.height / 2, 
+  dx: 4, 
+  dy: 4 
+};
+
 
   } else {
     // hráč je vpravo
     player = { x: canvas.width - 20, y: 150, dy: 0 };
     ai = { x: 10, y: 150 };
-    ball = { x: 300, y: 200, dx: -4, dy: 4 };
-  }
+    ball = { 
+  x: canvas.width / 2, 
+  y: canvas.height / 2, 
+  dx: 4, 
+  dy: 4 
+};
+
 
   scorePlayer = 0;
   scoreAI = 0;
@@ -364,7 +385,7 @@ canvas.addEventListener("touchmove", e=>{
   e.preventDefault();
   let rect = canvas.getBoundingClientRect();
   let y = e.touches[0].clientY - rect.top;
-  player.y = y - 80;
+  player.y = y - (80 / 2);
 player.y = Math.max(0, Math.min(canvas.height - 80, player.y));
 },{passive:false});
 </script>
