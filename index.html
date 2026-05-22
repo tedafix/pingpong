@@ -246,9 +246,9 @@ targetY += error;
 // omezení rychlosti AI (KLÍČOVÉ!)
 let speed = 4; // zkus 2–4 podle obtížnosti
 
-if(targetY > ai.y + 40){
+if(targetY > ai.y + 60){
   ai.y += speed;
-} else if(targetY < ai.y + 40){
+} else if(targetY < ai.y + 60){
   ai.y -= speed;
 }
 
@@ -442,7 +442,7 @@ let offset = 180;
 player.y = y - offset;
 
 
-player.y = Math.max(0, Math.min(canvas.height - 80, player.y));
+player.y = Math.max(0, Math.min(canvas.height - 120, player.y));
 },{passive:false});
 </script>
 
