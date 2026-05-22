@@ -210,7 +210,7 @@ function update(){
   player.y += player.dy;
 
   // clamp hráče
-  player.y = Math.max(0, Math.min(canvas.height - 80, player.y));
+  player.y = Math.max(0, Math.min(canvas.height - 120, player.y));
 
  // AI
 
@@ -253,10 +253,10 @@ ai.y = Math.max(0, Math.min(canvas.height - 80, ai.y));
 
 // hráč (vlevo nebo vpravo)
 if(
-  ball.x - 8 < player.x + 10 &&
-  ball.x + 8 > player.x &&
+  ball.x - 12 < player.x + 10 &&
+  ball.x + 12 > player.x &&
   ball.y > player.y &&
-  ball.y < player.y + 80
+  ball.y < player.y + 120
 ){
   ball.dx *= -1;
 }
@@ -265,10 +265,10 @@ if(
 
 // AI (opravená kolize)
 if(
-  ball.x - 8 < ai.x + 10 &&
-  ball.x + 8 > ai.x &&
+  ball.x - 12 < ai.x + 10 &&
+  ball.x + 12 > ai.x &&
   ball.y > ai.y &&
-  ball.y < ai.y + 80
+  ball.y < ai.y + 120
 ){
   ball.dx *= -1;
 }
@@ -301,11 +301,11 @@ function draw(){
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.fillStyle = "white";
-  ctx.fillRect(player.x, player.y, 10, 80);
-  ctx.fillRect(ai.x, ai.y, 10, 80);
+  ctx.fillRect(player.x, player.y, 15, 120);
+  ctx.fillRect(ai.x, ai.y, 15, 120);
 
   ctx.beginPath();
-  ctx.arc(ball.x, ball.y, 8, 0, Math.PI*2);
+  ctx.arc(ball.x, ball.y, 12, 0, Math.PI*2);
   ctx.fill();
 
 // PAUSE overlay
