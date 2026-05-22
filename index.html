@@ -130,39 +130,41 @@ let selectedSide = "left"; // left | right
 
 
 
+
 function start(){
+
+  let angle = (Math.random() * 0.6) - 0.3;
+  let speed = 4;
 
   if(selectedSide === "left"){
     player = { x: 30, y: 150, dy: 0 };
     ai = { x: canvas.width - 20, y: 150 };
-    ball = {   x: canvas.width / 2,   y: canvas.height / 2, 
-  dx: 4, 
-  dy: 4 
-};
 
+    ball = {
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      dx: speed,
+      dy: angle * speed * 5
+    };
 
   } else {
-    // hráč je vpravo
     player = { x: canvas.width - 30, y: 150, dy: 0 };
     ai = { x: 10, y: 150 };
 
-let angle = (Math.random() * 0.6) - 0.3; // -0.3 až +0.3
-let speed = 4;
-
-ball = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
-  dx: (selectedSide === "left" ? 1 : -1) * speed,
-  dy: angle * speed * 5
-};
-
-
-}
+    ball = {
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      dx: -speed,
+      dy: angle * speed * 5
+    };
+  }
 
   scorePlayer = 0;
   scoreAI = 0;
   gameOver = false;
 }
+``
+
 
 
 function selectSide(side){
@@ -251,7 +253,7 @@ if(targetY > ai.y + 40){
 }
 
 // clamp (aby nevylezla z hřiště)
-ai.y = Math.max(0, Math.min(canvas.height - 80, ai.y));
+ai.y = Math.max(0, Math.min(canvas.height - 120, ai.y));
 ``
 
 
@@ -273,8 +275,10 @@ if(
   ball.dx *= -1.1;
   ball.dy = hit * 6;
 
+
 bounceSound.currentTime = 0;
-bounceSound.play();
+bounceSound.play().catch(() => {});
+
 
   if(Math.abs(ball.dy) < 2){
     ball.dy = ball.dy > 0 ? 2 : -2;
@@ -299,8 +303,10 @@ if(
   ball.dx *= -1.1;
   ball.dy = hit * 6;
 
+
 bounceSound.currentTime = 0;
-bounceSound.play();
+bounceSound.play().catch(() => {});
+
 
   if(Math.abs(ball.dy) < 2){
     ball.dy = ball.dy > 0 ? 2 : -2;
