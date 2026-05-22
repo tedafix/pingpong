@@ -152,7 +152,7 @@ ball = {
   dy: angle * speed * 5
 };
 
-};
+
 }
 
   scorePlayer = 0;
@@ -266,8 +266,13 @@ if(
   ball.y < player.y + 120
 ){
   let hit = (ball.y - (player.y + 60)) / 60; // -1 až 1
-  ball.dx *= -1;
+  ball.dx *= -1.1;
   ball.dy = hit * 6;
+
+  if(Math.abs(ball.dy) < 2){
+    ball.dy = ball.dy > 0 ? 2 : -2;
+  }
+
 }
 
 
@@ -275,16 +280,24 @@ if(
 
 // AI (opravená kolize)
 
+
+// AI
 if(
-  ball.x - 12 < player.x + 10 &&
-  ball.x + 12 > player.x &&
-  ball.y > player.y &&
-  ball.y < player.y + 120
+  ball.x - 12 < ai.x + 15 &&
+  ball.x + 12 > ai.x &&
+  ball.y > ai.y &&
+  ball.y < ai.y + 120
 ){
-  let hit = (ball.y - (player.y + 60)) / 60; // -1 až 1
-  ball.dx *= -1;
+  let hit = (ball.y - (ai.y + 60)) / 60;
+  ball.dx *= -1.1;
   ball.dy = hit * 6;
+
+  if(Math.abs(ball.dy) < 2){
+    ball.dy = ball.dy > 0 ? 2 : -2;
+  }
+
 }
+
 
 
 ``
