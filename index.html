@@ -122,6 +122,7 @@ let ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 4, dy: 4 };
 
 let scorePlayer = 0;
 let scoreAI = 0;
+  let canPlaySound = true;
 let gameOver = false;
 
 let gameState = "menu"; // menu | ready | playing | gameover
@@ -276,8 +277,17 @@ if(
   ball.dy = hit * 6;
 
 
-bounceSound.currentTime = 0;
-bounceSound.play().catch(() => {});
+
+if(canPlaySound){
+  bounceSound.currentTime = 0;
+  bounceSound.play().catch(() => {});
+  canPlaySound = false;
+
+  setTimeout(() => {
+    canPlaySound = true;
+  }, 100);
+}
+
 
 
   if(Math.abs(ball.dy) < 2){
@@ -298,14 +308,24 @@ if(
   ball.x + 12 > ai.x &&
   ball.y > ai.y &&
   ball.y < ai.y + 120
+  ball.dx < 0
 ){
   let hit = (ball.y - (ai.y + 60)) / 60;
   ball.dx *= -1.1;
   ball.dy = hit * 6;
 
 
-bounceSound.currentTime = 0;
-bounceSound.play().catch(() => {});
+
+if(canPlaySound){
+  bounceSound.currentTime = 0;
+  bounceSound.play().catch(() => {});
+  canPlaySound = false;
+
+  setTimeout(() => {
+    canPlaySound = true;
+  }, 100);
+}
+
 
 
   if(Math.abs(ball.dy) < 2){
