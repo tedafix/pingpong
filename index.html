@@ -63,12 +63,56 @@ canvas {
   display: block;
 }
 
+#scoreboard {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 600px;
+  margin: 10px 0;
+  align-items: center;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+#scoreboard {
+  background: #111;
+  padding: 10px;
+  border-radius: 10px;
+}
+
   </style>
 </head>
 <body>
 
 <h1>🏓 Pong</h1>
-<canvas id="game" ></canvas>
+
+<div id="scoreboard">
+  <div class="team">
+    <img src="team1.png" class="logo">
+    <div>Team A</div>
+    <div id="scorePlayer">0</div>
+  </div>
+
+  <div class="team">
+    <div id="scoreAI">0</div>
+    <div>Team B</div>
+    <img src="team2.png" class="logo">
+  </div>
+</div>
+
+<canvas id="game"></canvas>
+
 
 <div id="controls">
   <button id="pauseBtn" onclick="togglePause()">Pause</button>
@@ -365,12 +409,14 @@ bounceSound.play().catch(()=>{});
 
 if(ball.x < 0){
   scoreAI++;
+  document.getElementById("scoreAI").innerText = scorePlayer;
   playGoal();   // ✅ správně
   resetBall();
 }
 
 if(ball.x > canvas.width){
   scorePlayer++;
+  document.getElementById("scorePlayer").innerText = scorePlayer;
   playGoal();   // ✅ správně
   resetBall();
 }
@@ -409,8 +455,7 @@ if(gameState === "paused"){
 
 // skóre
 ctx.font = "20px Arial";
-ctx.fillText(scorePlayer, canvas.width / 4, 30);
-ctx.fillText(scoreAI, canvas.width * 3 / 4, 30);
+
 
 if(gameOver){
   ctx.font = "30px Arial";
