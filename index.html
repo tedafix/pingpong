@@ -102,11 +102,10 @@ const ctx = canvas.getContext("2d");
   document.body.style.overflow = "hidden";
   
 
-function playBounce(){
-  let sound = new Audio("bounce.mp3");
-  sound.volume = 0.3;
-  sound.play().catch(()=>{});
-}
+
+const bounceSound = new Audio("bounce.mp3");
+bounceSound.volume = 0.3;
+
 ;
 
 function playGoal(){
@@ -293,7 +292,10 @@ if(
 
 
 if(canPlaySound){
-playBounce();
+
+bounceSound.currentTime = 0;
+bounceSound.play().catch(()=>{});
+
   canPlaySound = false;
 
   setTimeout(() => {
@@ -333,7 +335,10 @@ if(
   ball.x += ball.dx; // ✅ posun ven z pálky
 
   if(canPlaySound){
-playBounce();
+
+bounceSound.currentTime = 0;
+bounceSound.play().catch(()=>{});
+
     canPlaySound = false;
 
     setTimeout(() => {
