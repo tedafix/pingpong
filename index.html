@@ -101,7 +101,13 @@ const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
   document.body.style.overflow = "hidden";
   
-const bounceSound = new Audio("bounce.mp3");
+
+function playBounce(){
+  let sound = new Audio("bounce.mp3");
+  sound.volume = 0.3;
+  sound.play().catch(()=>{});
+}
+;
 const goalSound = new Audio("goal.mp3");
 
 
@@ -280,8 +286,7 @@ if(
 
 
 if(canPlaySound){
-  bounceSound.currentTime = 0;
-  bounceSound.play().catch(() => {});
+playBounce();
   canPlaySound = false;
 
   setTimeout(() => {
@@ -320,8 +325,7 @@ if(
   ball.dy = hit * 6;
 
   if(canPlaySound){
-    bounceSound.currentTime = 0;
-    bounceSound.play().catch(() => {});
+playBounce();
     canPlaySound = false;
 
     setTimeout(() => {
@@ -346,17 +350,17 @@ if(
 
 if(ball.x < 0){
   scoreAI++;
-  goalSound.currentTime = 0;
-  goalSound.play();
+  playGoal();   // ✅ správně
   resetBall();
 }
 
 if(ball.x > canvas.width){
   scorePlayer++;
-  goalSound.currentTime = 0;
-  goalSound.play();
+  playGoal();   // ✅ správně
   resetBall();
 }
+
+
 
 
   // konec hry
