@@ -308,7 +308,11 @@ bounceSound.play().catch(()=>{});
   if(Math.abs(ball.dy) < 2){
     ball.dy = ball.dy > 0 ? 2 : -2;
   }
-navigator.vibrate(20);
+
+if (navigator.vibrate) {
+  navigator.vibrate(20);
+}
+
 }
 
 
@@ -350,7 +354,11 @@ bounceSound.play().catch(()=>{});
     ball.dy = ball.dy > 0 ? 2 : -2;
   }
 
+ 
+if (navigator.vibrate) {
   navigator.vibrate(20);
+}
+
 }
 
 
