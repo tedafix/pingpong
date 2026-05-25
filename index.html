@@ -104,7 +104,7 @@ canvas {
   }
 
   h1 {
-    font-size: 36px;
+    font-size: 28px;
     margin: 15px 0;
   }
 
@@ -125,7 +125,7 @@ canvas {
   }
 
   #scorePlayer, #scoreAI {
-    font-size: 32px;
+    font-size: 26px;
   }
 
   /* MENU */
@@ -140,8 +140,8 @@ canvas {
 
   #menu button {
     width: 100%;
-    font-size: 22px;
-    padding: 18px;
+    font-size: 20px;
+    padding: 14px;
     margin: 12px 0;
     border-radius: 12px;
   }
@@ -152,6 +152,10 @@ canvas {
     padding: 12px 20px;
     margin: 8px;
   }
+}
+
+body {
+  padding-bottom: 60px;
 }
 
 
@@ -226,7 +230,7 @@ function playGoal(){
 
 function resizeCanvas(){
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight * 0.5; // nech místo na tlačítka
+  canvas.height = window.innerHeight * 0.4; // nech místo na tlačítka
 }
 
 resizeCanvas();
@@ -248,6 +252,16 @@ let gameState = "menu"; // menu | ready | playing | gameover
 let selectedSide = "left"; // left | right
 
 
+
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+
+  if(window.innerWidth < 600){
+    canvas.height = window.innerHeight * 0.4;
+  } else {
+    canvas.height = window.innerHeight * 0.5;
+  }
+}
 
 
 
