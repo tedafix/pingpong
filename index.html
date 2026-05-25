@@ -296,7 +296,12 @@ function start(){
   scorePlayer = 0;
   scoreAI = 0;
   gameOver = false;
+  
+document.getElementById("scorePlayer").innerText = 0;
+document.getElementById("scoreAI").innerText = 0;
+
 }
+  
 ``
 
 
@@ -487,7 +492,7 @@ bounceSound.play().catch(()=>{});
 
 if(ball.x < 0){
   scoreAI++;
-  document.getElementById("scoreAI").innerText = scorePlayer;
+  document.getElementById("scoreAI").innerText = scoreAI;
   playGoal();   // ✅ správně
   resetBall();
 }
