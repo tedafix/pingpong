@@ -108,7 +108,13 @@ function playBounce(){
   sound.play().catch(()=>{});
 }
 ;
-const goalSound = new Audio("goal.mp3");
+
+function playGoal(){
+  let sound = new Audio("goal.mp3");
+  sound.volume = 0.8;
+  sound.play().catch(()=>{});
+}
+
 
 
 function resizeCanvas(){
@@ -282,6 +288,7 @@ if(
   let hit = (ball.y - (player.y + 60)) / 60; // -1 až 1
   ball.dx *= -1.1;
   ball.dy = hit * 6;
+  ball.x += ball.dx; // ✅ posun ven z pálky
 
 
 
@@ -323,6 +330,7 @@ if(
   let hit = (ball.y - (ai.y + 60)) / 60;
   ball.dx *= -1.1;
   ball.dy = hit * 6;
+  ball.x += ball.dx; // ✅ posun ven z pálky
 
   if(canPlaySound){
 playBounce();
